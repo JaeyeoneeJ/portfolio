@@ -2,7 +2,7 @@ import { DefaultTheme } from "styled-components";
 
 export const lightTheme: DefaultTheme = {
   background: "white",
-  pointColor: "teal",
+  pointColor: "#265d10",
   black: {
     veryDark: "#141414",
     darker: "#181818",
