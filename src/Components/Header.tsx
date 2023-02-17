@@ -5,21 +5,21 @@ import { Link, useMatch } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Position = styled.div`
-  position: fixed;
   top: 80px;
   left: 0;
   right: 0;
   max-width: 1480px;
   margin: 0 auto;
-  padding-bottom: 10px;
-  border-bottom: 1px solid ${(props) => props.theme.white.lighter};
 `;
 const Wrapper = styled.div`
+  width: 100%;
   font-size: 20px;
   display: flex;
   align-items: center;
   gap: 20px;
   justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid ${(props) => props.theme.white.lighter};
 `;
 
 const FlexBox = styled.div`
@@ -39,12 +39,15 @@ const MenuItem = styled.button`
   font-weight: 300;
   position: relative;
   top: -5px;
+  @media screen and (max-width: 1180px) {
+    font-size: 14px;
+  }
 `;
 const Circle = styled(motion.span)`
   position: absolute;
   width: 5px;
   height: 5px;
-  background-color: ${(props) => props.theme.white.lighter};
+  background-color: #265d10;
   border-radius: 5px;
   bottom: -10px;
   left: 0;
@@ -54,6 +57,7 @@ const Circle = styled(motion.span)`
 
 const TitleArea = styled.div`
   /* min-width: 250px; */
+  color: #265d10;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,15 +65,22 @@ const TitleArea = styled.div`
     font-size: 30px;
     letter-spacing: 10px;
   }
+  @media screen and (max-width: 1180px) {
+    font-size: 14px;
+    span:last-child {
+      font-size: 20px;
+      letter-spacing: 6px;
+    }
+  }
 `;
 const LinkArea = styled.a`
   cursor: pointer;
   svg {
-    color: ${(props) => props.theme.gray.darker};
+    color: white;
     transition: all 0.3s;
   }
   &:hover svg {
-    color: ${(props) => props.theme.pointColor};
+    color: ${(props) => props.theme.gray.darker};
     scale: 1.1;
     transform: translateY(-5px);
   }
@@ -125,4 +136,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
