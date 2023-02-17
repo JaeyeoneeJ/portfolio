@@ -33,24 +33,50 @@ interface IProp {
 
 const TypingText = ({
   text = "",
-  speed = 100,
+  speed = 200,
   fontSize = "1em",
   color = "black",
 }: IProp) => {
   const [typingText, setTypingText] = useState("");
   const [count, setCount] = useState(0);
+  const [isAdding, setIsAdding] = useState(true);
+  console.log(isAdding);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTypingText((typingText) => {
-        let updated = typingText;
-        updated = typingText + text[count];
-        return updated;
-      });
-      setCount(count + 1);
-    }, speed);
-    count === text.length && clearInterval(interval);
-    return () => clearInterval(interval);
+    if (isAdding) {
+      const interval = setInterval(() => {
+        setTypingText((typingText) => {
+          let updated = typingText;
+          updated = typingText + text[count];
+          return updated;
+        });
+        setCount(count + 1);
+      }, speed);
+      if (count === text.length) {
+        setTimeout(() => {
+          setIsAdding(false);
+        }, 2000);
+        clearInterval(interval);
+      }
+      return () => clearInterval(interval);
+    } else {
+      const interval = setInterval(() => {
+        setTypingText((typingText) => {
+          let updated = typingText;
+          updated = text.slice(0, count);
+          return updated;
+        });
+        setCount(count - 1);
+      }, speed);
+      if (typingText.length === 0) {
+        setTimeout(() => {
+          setIsAdding(true);
+        }, 1000);
+        clearInterval(interval);
+        setCount(0);
+      }
+      return () => clearInterval(interval);
+    }
   });
 
   return (
