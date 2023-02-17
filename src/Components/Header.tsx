@@ -4,8 +4,17 @@ import { FaGithub } from "react-icons/fa";
 import { Link, useMatch } from "react-router-dom";
 import { motion } from "framer-motion";
 
+const Position = styled.div`
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  border-bottom: 1px solid ${(props) => props.theme.white.lighter};
+`;
 const Wrapper = styled.div`
-  border: 1px solid red;
   font-size: 20px;
   display: flex;
   align-items: center;
@@ -35,7 +44,7 @@ const Circle = styled(motion.span)`
   position: absolute;
   width: 5px;
   height: 5px;
-  background-color: ${(props) => props.theme.pointColor};
+  background-color: ${(props) => props.theme.white.lighter};
   border-radius: 5px;
   bottom: -10px;
   left: 0;
@@ -72,45 +81,47 @@ const Header = () => {
   const timelineMatch = useMatch("/timeline");
   const aboutMeMatch = useMatch("/about_me");
   return (
-    <Wrapper>
-      <FlexBox>
-        <Link to="/">
-          <TitleArea>
-            <span>jaeyeonee's</span>
-            <span>PORTFOLIO</span>
-          </TitleArea>
-        </Link>
-        <MenuArea>
-          <MenuItem>
-            <Link to="/">
-              Home
-              {homeMatch && <Circle layoutId="circle" />}
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/project">
-              Project
-              {projectMatch && <Circle layoutId="circle" />}
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/timeline">
-              Timeline
-              {timelineMatch && <Circle layoutId="circle" />}
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/about_me">
-              About me
-              {aboutMeMatch && <Circle layoutId="circle" />}
-            </Link>
-          </MenuItem>
-        </MenuArea>
-      </FlexBox>
-      <LinkArea href="https://github.com/jaeyeoneej">
-        <FaGithub size={30} />
-      </LinkArea>
-    </Wrapper>
+    <Position>
+      <Wrapper>
+        <FlexBox>
+          <Link to="/">
+            <TitleArea>
+              <span>jaeyeonee's</span>
+              <span>PORTFOLIO</span>
+            </TitleArea>
+          </Link>
+          <MenuArea>
+            <MenuItem>
+              <Link to="/">
+                Home
+                {homeMatch && <Circle layoutId="circle" />}
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/project">
+                Project
+                {projectMatch && <Circle layoutId="circle" />}
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/timeline">
+                Timeline
+                {timelineMatch && <Circle layoutId="circle" />}
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/about_me">
+                About me
+                {aboutMeMatch && <Circle layoutId="circle" />}
+              </Link>
+            </MenuItem>
+          </MenuArea>
+        </FlexBox>
+        <LinkArea href="https://github.com/jaeyeoneej">
+          <FaGithub size={30} />
+        </LinkArea>
+      </Wrapper>
+    </Position>
   );
 };
 

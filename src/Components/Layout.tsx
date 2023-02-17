@@ -3,13 +3,16 @@ import styled from "styled-components";
 import Header from "../Components/Header";
 
 const Background = styled.div`
-  background-color: teal;
+  background-color: white;
   width: 100vw;
   height: 100vh;
   padding: 60px 40px;
 `;
 const Wrapper = styled.div`
   background-color: white;
+  background-image: url("https://images.unsplash.com/photo-1595113316349-9fa4eb24f884?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80");
+  background-position: center 20%;
+  background-size: cover;
   border-radius: 10px;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
   max-width: 1600px;
@@ -18,17 +21,22 @@ const Wrapper = styled.div`
   height: 100%;
   width: 100%;
   overflow: hidden;
+  transition: all 5s;
+  &:hover {
+    background-position: center 50%;
+  }
 `;
 const Container = styled.div`
-  margin-top: 30px;
-  border: 1px solid red;
+  z-index: 3;
+  margin-top: 90px;
+  /* border: 1px solid red; */
 `;
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <Background>
+      <Header />
       <Wrapper>
-        <Header />
         <Container>{children}</Container>
       </Wrapper>
     </Background>
