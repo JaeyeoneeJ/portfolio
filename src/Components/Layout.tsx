@@ -28,15 +28,15 @@ const Wrapper = styled.div`
 `;
 const Container = styled.div`
   z-index: 3;
-  margin-top: 90px;
+  margin-top: 20px;
   /* border: 1px solid red; */
 `;
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <Background>
-      <Header />
       <Wrapper>
+        <Header />
         <Container>{children}</Container>
       </Wrapper>
     </Background>

@@ -42,8 +42,6 @@ const TypingText = ({
   const [index, setIndex] = useState(0);
   const [count, setCount] = useState(0);
   const [isAdding, setIsAdding] = useState(true);
-  console.log(isAdding);
-  console.log(text.length);
 
   useEffect(() => {
     if (isAdding) {
@@ -90,4 +88,4 @@ const TypingText = ({
   );
 };
 
-export default TypingText;
+export default React.memo(TypingText);
