@@ -6,6 +6,7 @@ const Text = styled.p<{ fontSize: string; color: string }>`
   color: ${(props) => props.color};
   &::after {
     content: "|";
+    font-weight: 400;
     animation: blink 1s step-end infinite;
   }
   @keyframes blink {
@@ -25,37 +26,39 @@ const Text = styled.p<{ fontSize: string; color: string }>`
 `;
 
 interface IProp {
-  text?: string;
+  text?: string[];
   speed?: number;
   fontSize?: string;
   color?: string;
 }
 
 const TypingText = ({
-  text = "",
-  speed = 200,
+  text = [""],
+  speed = 120,
   fontSize = "1em",
   color = "black",
 }: IProp) => {
   const [typingText, setTypingText] = useState("");
+  const [index, setIndex] = useState(0);
   const [count, setCount] = useState(0);
   const [isAdding, setIsAdding] = useState(true);
   console.log(isAdding);
+  console.log(text.length);
 
   useEffect(() => {
     if (isAdding) {
       const interval = setInterval(() => {
         setTypingText((typingText) => {
           let updated = typingText;
-          updated = typingText + text[count];
+          updated = typingText + text[index][count];
           return updated;
         });
         setCount(count + 1);
       }, speed);
-      if (count === text.length) {
+      if (count === text[index].length) {
         setTimeout(() => {
           setIsAdding(false);
-        }, 2000);
+        }, 1000);
         clearInterval(interval);
       }
       return () => clearInterval(interval);
@@ -63,15 +66,16 @@ const TypingText = ({
       const interval = setInterval(() => {
         setTypingText((typingText) => {
           let updated = typingText;
-          updated = text.slice(0, count);
+          updated = text[index].slice(0, count);
           return updated;
         });
         setCount(count - 1);
-      }, speed);
+      }, 60);
       if (typingText.length === 0) {
         setTimeout(() => {
           setIsAdding(true);
-        }, 1000);
+          setIndex((prev) => (prev === text.length ? 0 : index + 1));
+        }, 500);
         clearInterval(interval);
         setCount(0);
       }
