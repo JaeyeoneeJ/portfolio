@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import { AiFillTrophy, AiFillBulb, AiOutlineFileImage } from "react-icons/ai";
 import { useSetRecoilState } from "recoil";

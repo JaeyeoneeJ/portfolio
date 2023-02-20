@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { imgState } from "./atoms";
+import { imgState, projectState } from "./atoms";
 import Layout from "./Components/Layout";
+import ProjectModal from "./Components/Project/ProjectModal";
 import ImgModal from "./Components/Timeline/ImgModal";
 import AboutMe from "./Routes/AboutMe";
 import Home from "./Routes/Home";
@@ -11,9 +12,11 @@ import Timeline from "./Routes/Timeline";
 
 function App() {
   const isClickedImg = useRecoilValue(imgState);
+  const isClickedProject = useRecoilValue(projectState);
   return (
     <BrowserRouter>
       {isClickedImg && <ImgModal />}
+      {isClickedProject && <ProjectModal />}
       <Layout>
         <Routes>
           <Route path={"/"} element={<Home />} />

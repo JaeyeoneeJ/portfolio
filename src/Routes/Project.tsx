@@ -1,5 +1,6 @@
-import React from "react";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
+import { IProjectData, projectData, projectState } from "../atoms";
 
 const Ctn = styled.div`
   position: relative;
@@ -98,12 +99,19 @@ const projects = [
     description: "반응형 웹 구현에 중점을 두고 에어비앤비를 클론한 프로젝트",
   },
 ];
+
 const Project = () => {
+  const setIsClickedProject = useSetRecoilState(projectState);
+  const setIsprojectData = useSetRecoilState(projectData);
+  const onProjectView = (file: IProjectData) => {
+    setIsClickedProject(true);
+    setIsprojectData(file);
+  };
   return (
     <Ctn>
       <Wrapper>
         {projects.map((project, index) => (
-          <Card key={index}>
+          <Card key={index} onClick={() => onProjectView(project)}>
             <ImgBox>
               <Img src={`img/projects/${project.src}.png`} alt="project-img" />
             </ImgBox>
