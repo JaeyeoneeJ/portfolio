@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 `;
 
 const Card = styled.div`
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.5);
   display: flex;
   gap: 10px;
   padding: 10px;
