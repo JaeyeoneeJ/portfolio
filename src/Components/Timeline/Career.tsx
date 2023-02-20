@@ -60,10 +60,17 @@ const Career = () => {
     },
     {
       duration: "2018.11 ~ 2020.03",
-      experience: "법인 설립 및 경영/브랜딩/마케팅 컨설팅",
-      position: "대리",
-      company: "다울사회적협동조합",
-      location: "경기 오산시",
+      experience: "법인 판로지원 및 도시/청년정책 연구",
+      position: "연구원",
+      company: "사회적협동조합 공동체세움",
+      location: "충남 공주시",
+    },
+    {
+      duration: "2017.08 ~ 2018.11",
+      experience: "공모전 모음 플랫폼 '콘테스트크루' 웹서비스 런칭",
+      position: "대표",
+      company: "에프앤잇",
+      location: "세종시",
     },
   ];
   return (
