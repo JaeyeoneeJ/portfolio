@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Awards from "../Components/Timeline/Awards";
 import TimelineContents from "../Components/Timeline/TimelineContents";
-import Education from "../Components/Timeline/Education";
 
 const Wrapper = styled.div`
   position: relative;
+  height: 100%;
 `;
 const MenuBar = styled.div`
   display: flex;
@@ -18,7 +17,7 @@ const MenuItem = styled.div<{ active: boolean }>`
   border-bottom: ${(props) =>
     props.active ? `3px solid ${props.theme.pointColor}` : "none"};
   color: ${(props) => (props.active ? props.theme.pointColor : "black")};
-
+  cursor: pointer;
   transition: all 0.3s;
   &:hover {
     color: ${(props) => props.theme.gray.darker};

@@ -29,6 +29,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   z-index: 3;
   margin-top: 20px;
+  height: 100%;
   /* border: 1px solid red; */
 `;
 
