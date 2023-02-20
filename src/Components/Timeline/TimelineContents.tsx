@@ -6,11 +6,15 @@ import { IImgName, imgName, imgState } from "../../atoms";
 
 const Wrapper = styled.div`
   overflow-y: auto;
-  height: calc(100% - 105px);
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  height: calc(100% - 125px);
+  @media screen and (max-width: 1180px) {
+    height: calc(100% - 105px);
+  }
 `;
-const Wrapper2 = styled.div`
-  height: 100%;
-`;
+
 const Card = styled.div`
   background-color: rgba(255, 255, 255, 0.3);
   display: flex;
@@ -106,7 +110,11 @@ const awards = [
     experience: "디자인융합벤처창업학교 청년창업팀 선정",
     subject: "공모전 모음 플랫폼 - 콘테스트크루",
     host: "한국디자인진흥원",
-    file: undefined,
+    file: {
+      src: "activity_contestcrew",
+      title: "Contest Crew",
+      explain: "대학생 및 취업준비생의 공모전 준비를 위한 웹서비스",
+    },
   },
   {
     category: "activity",
@@ -168,6 +176,21 @@ const awards = [
   },
 ];
 
+const educations = [
+  {
+    duration: "2020.09 ~ 2022.12",
+    experience: "스파르타코딩클럽 항해99, 9기",
+    host: "팀스파르타",
+    position: "Front-End(React)",
+  },
+  {
+    duration: "2011.02 ~ 2017.08",
+    experience: "산업공학부 디자인공학전공",
+    host: "금오공과대학교",
+    position: "학점 3.14",
+  },
+];
+
 interface IProps {
   isCareer: boolean;
   isAwards: boolean;
@@ -182,65 +205,78 @@ const TimelineContents = ({ isCareer, isAwards, isEducation }: IProps) => {
     setIsImgName(file);
   };
   return (
-    <>
-      <Wrapper>
-        <Wrapper2>
-          {isCareer &&
-            careers.map((career, index) => (
-              <Card key={index}>
-                <Duration>{career.duration}</Duration>
-                <Explain>
-                  <Experience>{career.experience}</Experience>
-                  <UnderLine>
-                    <BorderBoxContent color="#fcf29b">
-                      {career.position}
-                    </BorderBoxContent>
-                    <BorderBoxContent color="#d0e4a7">
-                      {career.company}
-                    </BorderBoxContent>
-                    <BorderBoxContent color="#fcd09b">
-                      {career.location}
-                    </BorderBoxContent>
-                  </UnderLine>
-                </Explain>
-              </Card>
-            ))}
-          {isAwards &&
-            awards.map((award, index) => (
-              <Card key={index}>
-                <FlexCol>
-                  <Duration>{award.duration}</Duration>
-                  <FlexRow>
-                    <Category>
-                      {award.category === "award" ? (
-                        <AiFillTrophy size={18} color="#ffb004" />
-                      ) : (
-                        <AiFillBulb size={18} color="#efe702" />
-                      )}
-                    </Category>
-                    {award.file && (
-                      <ImgIcon onClick={() => onImgView(award.file)}>
-                        <AiOutlineFileImage size={20} />
-                      </ImgIcon>
-                    )}
-                  </FlexRow>
-                </FlexCol>
-                <Explain>
-                  <Experience>{award.experience}</Experience>
-                  <UnderLine>
-                    <BorderBoxContent color="#fcf29b">
-                      {award.subject}
-                    </BorderBoxContent>
-                    <BorderBoxContent color="#d0e4a7">
-                      {award.host}
-                    </BorderBoxContent>
-                  </UnderLine>
-                </Explain>
-              </Card>
-            ))}
-        </Wrapper2>
-      </Wrapper>
-    </>
+    <Wrapper>
+      {isCareer &&
+        careers.map((career, index) => (
+          <Card key={index}>
+            <Duration>{career.duration}</Duration>
+            <Explain>
+              <Experience>{career.experience}</Experience>
+              <UnderLine>
+                <BorderBoxContent color="#fcf29b">
+                  {career.position}
+                </BorderBoxContent>
+                <BorderBoxContent color="#d0e4a7">
+                  {career.company}
+                </BorderBoxContent>
+                <BorderBoxContent color="#fcd09b">
+                  {career.location}
+                </BorderBoxContent>
+              </UnderLine>
+            </Explain>
+          </Card>
+        ))}
+      {isAwards &&
+        awards.map((award, index) => (
+          <Card key={index}>
+            <FlexCol>
+              <Duration>{award.duration}</Duration>
+              <FlexRow>
+                <Category>
+                  {award.category === "award" ? (
+                    <AiFillTrophy size={18} color="#ffb004" />
+                  ) : (
+                    <AiFillBulb size={18} color="#efe702" />
+                  )}
+                </Category>
+                {award.file && (
+                  <ImgIcon onClick={() => onImgView(award.file)}>
+                    <AiOutlineFileImage size={20} />
+                  </ImgIcon>
+                )}
+              </FlexRow>
+            </FlexCol>
+            <Explain>
+              <Experience>{award.experience}</Experience>
+              <UnderLine>
+                <BorderBoxContent color="#fcf29b">
+                  {award.subject}
+                </BorderBoxContent>
+                <BorderBoxContent color="#d0e4a7">
+                  {award.host}
+                </BorderBoxContent>
+              </UnderLine>
+            </Explain>
+          </Card>
+        ))}
+      {isEducation &&
+        educations.map((education, index) => (
+          <Card key={index}>
+            <Duration>{education.duration}</Duration>
+            <Explain>
+              <Experience>{education.experience}</Experience>
+              <UnderLine>
+                <BorderBoxContent color="#fcf29b">
+                  {education.host}
+                </BorderBoxContent>
+                <BorderBoxContent color="#d0e4a7">
+                  {education.position}
+                </BorderBoxContent>
+              </UnderLine>
+            </Explain>
+          </Card>
+        ))}
+    </Wrapper>
   );
 };
 
