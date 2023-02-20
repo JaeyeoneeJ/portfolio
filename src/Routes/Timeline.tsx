@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Awards from "../Components/Timeline/Awards";
-import Career from "../Components/Timeline/Career";
+import TimelineContents from "../Components/Timeline/TimelineContents";
 import Education from "../Components/Timeline/Education";
 
 const Wrapper = styled.div`
@@ -84,9 +84,11 @@ const Timeline = () => {
           EDUCATION
         </MenuItem>
       </MenuBar>
-      {career && <Career />}
-      {awards && <Awards />}
-      {education && <Education />}
+      <TimelineContents
+        isCareer={career}
+        isAwards={awards}
+        isEducation={education}
+      />
     </Wrapper>
   );
 };
