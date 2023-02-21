@@ -59,7 +59,6 @@ const ModalBox = styled.div`
   overflow: hidden;
   height: 80vh;
   margin: 20px;
-  border: 1px solid red;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   background-color: rgba(255, 255, 255, 1);
@@ -70,7 +69,7 @@ const ModalBox = styled.div`
 `;
 
 const Scroll = styled.div`
-  height: 100%;
+  height: calc(100%);
   overflow-y: auto;
 `;
 
@@ -106,6 +105,7 @@ const Contents = styled.div`
   width: 100%;
   padding: 20px;
   top: -90px;
+  margin-bottom: -60px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -158,6 +158,26 @@ const SkillWrapper = styled.div`
   max-width: 500px;
   margin: 0 auto;
   gap: 5px;
+`;
+
+const ExperienceWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 500px;
+  margin: 0 auto;
+  gap: 10px;
+  margin-bottom: 20px;
+`;
+
+const ExperienceBox = styled.div`
+  position: relative;
+  margin-left: 14px;
+  &:before {
+    content: "-";
+    position: absolute;
+    left: -14px;
+  }
 `;
 
 const SkillBox = styled(Duration)<{ textColor: string }>`
@@ -344,6 +364,16 @@ const ProjectModal = () => {
                       </LinkArea>
                     )}
                   </HeaderCenter>
+                  {isprojectData.experience && (
+                    <>
+                      <SubTitle>핵심경험</SubTitle>
+                      <ExperienceWrapper>
+                        {isprojectData.experience.map((text, index) => (
+                          <ExperienceBox key={index}>{text}</ExperienceBox>
+                        ))}
+                      </ExperienceWrapper>
+                    </>
+                  )}
                   {isprojectData.skillStack && (
                     <>
                       <SubTitle>used as thd main Tech Stack</SubTitle>

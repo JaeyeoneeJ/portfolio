@@ -32,6 +32,7 @@ export interface IProjectData {
   src: string;
   description: string;
   overview: string;
+  experience?: string[];
   duration: string;
   isTeam?:
     | {
