@@ -79,6 +79,13 @@ const projects = [
     description: "프론트엔드 개발자 포트폴리오 웹사이트 개발",
     overview:
       "프론트엔드 개발자로서의 첫 포트폴리오로 보드 느낌의 깔끔함을 메인 컨셉으로 잡고 작업한 프로젝트입니다.",
+    experience: [
+      "라이브러리 없이 React Hook을 활용하여 타이핑 모션(타이핑 및 삭제)으로 메인 페이지 구현",
+      "외부 라이브러리 없이 리액트에서 이미지를 점진적으로 로드하는 기능 구현",
+      "framer-motion을 사용하여 animation 구현",
+      "Project의 사용 기술 스텍을 hsl로 채도와 명도를 고정해 hue 값만을 조절하여 랜덤한 컬러 구현",
+      "Notion 느낌을 주기 위해 단어 블럭화",
+    ],
     duration: "2023.02 ~ 2023.02(1주)",
     isTeam: undefined,
     skillStack: [
