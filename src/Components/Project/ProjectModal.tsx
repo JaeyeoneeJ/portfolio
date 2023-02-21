@@ -4,6 +4,8 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { projectData, projectState } from "../../atoms";
 import ProjectPortal from "./ProjectPortal";
+import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
+import { IoMdGlobe } from "react-icons/io";
 
 // 모달 배경화면
 const Overlay = styled(motion.div)`
@@ -98,16 +100,77 @@ const Img = styled.img`
 
 const Contents = styled.div`
   position: relative;
+  width: 100%;
   padding: 20px;
   top: -90px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+const HeaderCenter = styled(Header)`
+  align-items: center;
+`;
+
+const Title = styled.h2`
+  font-size: 40px;
+  font-weight: 400;
+`;
+
+const Duration = styled.p`
+  border-radius: 5px;
+  background-color: rgba(252, 242, 155, 1);
+  padding: 2px 6px;
+  color: gray;
 `;
 
 const Text = styled.p<{ fontSize?: string }>`
   font-weight: ${(props) => (props.fontSize ? 400 : 300)};
   font-size: ${(props) => (props.fontSize ? props.fontSize : "18px")};
+`;
+
+const TeamArea = styled(Header)`
+  justify-content: left;
+  gap: 5px;
+`;
+const LinkArea = styled(TeamArea)``;
+
+const LinkIcon = styled.a<{ tag: string }>`
+  cursor: pointer;
+  svg {
+    color: gray;
+    transition: all 0.2s;
+  }
+  &:hover svg {
+    color: ${(props) =>
+      props.tag === "website"
+        ? "#66D3FA"
+        : props.tag === "github"
+        ? "black"
+        : "#ff0000"};
+    scale: 1.1;
+    transform: translateY(-5px);
+  }
+`;
+
+const IsTeam = styled(Duration)<{ isTeam: boolean }>`
+  color: black;
+  background-color: ${(props) => (props.isTeam ? "#66D3FA" : "#ffa07a")};
+`;
+
+const TeamPosition = styled(Duration)<{ position: string }>`
+  background-color: ${(props) =>
+    props.position === "frontEnd"
+      ? "#fcf29b"
+      : props.position === "backEnd"
+      ? "#d0e4a7"
+      : "#fcd09b"};
 `;
 
 const ProjectModal = () => {
@@ -181,8 +244,62 @@ const ProjectModal = () => {
                 />
               </GradientBox>
               <Contents>
-                <Text fontSize="40px">{isprojectData.title}</Text>
+                <Header>
+                  <Title>{isprojectData.title}</Title>
+                  <Duration>{isprojectData.duration}</Duration>
+                </Header>
                 <Text>{isprojectData.overview}</Text>
+                <HeaderCenter>
+                  <TeamArea>
+                    {isprojectData.isTeam ? (
+                      <>
+                        <IsTeam isTeam={true}>팀 프로젝트</IsTeam>
+                        {isprojectData.isTeam.frontEnd && (
+                          <TeamPosition position="frontEnd">
+                            FE: {isprojectData.isTeam.frontEnd}
+                          </TeamPosition>
+                        )}
+                        {isprojectData.isTeam.backEnd && (
+                          <TeamPosition position="backEnd">
+                            BE: {isprojectData.isTeam.backEnd}
+                          </TeamPosition>
+                        )}
+                        {isprojectData.isTeam.designer && (
+                          <TeamPosition position="designer">
+                            DE: {isprojectData.isTeam.designer}
+                          </TeamPosition>
+                        )}
+                      </>
+                    ) : (
+                      <IsTeam isTeam={false}>개인 프로젝트</IsTeam>
+                    )}
+                  </TeamArea>
+                  {isprojectData.link && (
+                    <LinkArea>
+                      {isprojectData.link.website && (
+                        <LinkIcon
+                          href={isprojectData.link.website}
+                          tag="website"
+                        >
+                          <IoMdGlobe size={30} />
+                        </LinkIcon>
+                      )}
+                      {isprojectData.link.github && (
+                        <LinkIcon href={isprojectData.link.github} tag="github">
+                          <AiFillGithub size={30} />
+                        </LinkIcon>
+                      )}
+                      {isprojectData.link.youtube && (
+                        <LinkIcon
+                          href={isprojectData.link.github}
+                          tag="youtube"
+                        >
+                          <AiFillYoutube size={30} />
+                        </LinkIcon>
+                      )}
+                    </LinkArea>
+                  )}
+                </HeaderCenter>
               </Contents>
             </ModalBox>
           </Ctn>

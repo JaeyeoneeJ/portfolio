@@ -142,7 +142,9 @@ const projects = [
       "axios",
       "recoil",
       "recordRTC",
-      "AWS CloutFront, AWS S3",
+      "react-hook-form",
+      "AWS CloutFront",
+      "AMASON S3",
       "CLOVA Voice",
     ],
     link: {
@@ -162,7 +164,15 @@ const projects = [
       frontEnd: 2,
       backEnd: 3,
     },
-    skillStack: ["javascript", "react", "vercel", "redux"],
+    skillStack: [
+      "javascript",
+      "react",
+      "vercel",
+      "redux",
+      "redux-toolkit",
+      "axios",
+      "react-hook-form",
+    ],
     link: {
       website: "",
       github: "https://github.com/JaeyeoneeJ/DGBNB-FE",
