@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { projectData, projectState } from "../../atoms";
@@ -231,6 +231,7 @@ const TeamPosition = styled(Duration)<{ position: string }>`
 `;
 
 const ProjectModal = () => {
+  const [isExit, setIsExit] = useState(false);
   const setIsClickedProject = useSetRecoilState(projectState);
   const [isprojectData, setIsprojectData] = useRecoilState(projectData);
   const initial = {
@@ -253,8 +254,11 @@ const ProjectModal = () => {
   // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
   const modalRef = useRef<HTMLDivElement>(null);
   const onClose = () => {
-    setIsClickedProject(false);
-    setIsprojectData(initial);
+    setIsExit(true);
+    setTimeout(() => {
+      setIsClickedProject(false);
+      setIsprojectData(initial);
+    }, 500);
   };
 
   useEffect(() => {
@@ -279,120 +283,122 @@ const ProjectModal = () => {
   return (
     <ProjectPortal>
       <AnimatePresence>
-        <Overlay exit={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <CloseBtn onClick={onClose}>
-            <svg
-              strokeWidth="3"
-              color="white"
-              viewBox="0 0 24 24"
-              height="24px"
-              width="24px"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke="currentColor"
+        {!isExit && (
+          <Overlay exit={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <CloseBtn onClick={onClose}>
+              <svg
                 strokeWidth="3"
-                d="M3,3 L21,21 M3,21 L21,3"
-              ></path>
-            </svg>
-          </CloseBtn>
-          <Ctn>
-            <ModalBox ref={modalRef}>
-              <Scroll>
-                <GradientBox>
-                  <ProgressiveImg
-                    maxWidth="960px"
-                    src={`img/projects/${isprojectData.src}.gif`}
-                    placeholderSrc={`img/projects/${isprojectData.src}.png`}
-                  />
-                </GradientBox>
-                <Contents>
-                  <Header>
-                    <Title>{isprojectData.title}</Title>
-                    <Duration>{isprojectData.duration}</Duration>
-                  </Header>
-                  <Text>{isprojectData.overview}</Text>
-                  <HeaderCenter>
-                    <TeamArea>
-                      {isprojectData.isTeam ? (
-                        <>
-                          <IsTeam isTeam={true}>팀 프로젝트</IsTeam>
-                          {isprojectData.isTeam.frontEnd && (
-                            <TeamPosition position="frontEnd">
-                              FE: {isprojectData.isTeam.frontEnd}
-                            </TeamPosition>
+                color="white"
+                viewBox="0 0 24 24"
+                height="24px"
+                width="24px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  d="M3,3 L21,21 M3,21 L21,3"
+                ></path>
+              </svg>
+            </CloseBtn>
+            <Ctn>
+              <ModalBox ref={modalRef}>
+                <Scroll>
+                  <GradientBox>
+                    <ProgressiveImg
+                      maxWidth="960px"
+                      src={`img/projects/${isprojectData.src}.gif`}
+                      placeholderSrc={`img/projects/${isprojectData.src}.png`}
+                    />
+                  </GradientBox>
+                  <Contents>
+                    <Header>
+                      <Title>{isprojectData.title}</Title>
+                      <Duration>{isprojectData.duration}</Duration>
+                    </Header>
+                    <Text>{isprojectData.overview}</Text>
+                    <HeaderCenter>
+                      <TeamArea>
+                        {isprojectData.isTeam ? (
+                          <>
+                            <IsTeam isTeam={true}>팀 프로젝트</IsTeam>
+                            {isprojectData.isTeam.frontEnd && (
+                              <TeamPosition position="frontEnd">
+                                FE: {isprojectData.isTeam.frontEnd}
+                              </TeamPosition>
+                            )}
+                            {isprojectData.isTeam.backEnd && (
+                              <TeamPosition position="backEnd">
+                                BE: {isprojectData.isTeam.backEnd}
+                              </TeamPosition>
+                            )}
+                            {isprojectData.isTeam.designer && (
+                              <TeamPosition position="designer">
+                                DE: {isprojectData.isTeam.designer}
+                              </TeamPosition>
+                            )}
+                          </>
+                        ) : (
+                          <IsTeam isTeam={false}>개인 프로젝트</IsTeam>
+                        )}
+                      </TeamArea>
+                      {isprojectData.link && (
+                        <LinkArea>
+                          {isprojectData.link.website && (
+                            <LinkIcon
+                              href={isprojectData.link.website}
+                              tag="website"
+                            >
+                              <IoMdGlobe size={30} />
+                            </LinkIcon>
                           )}
-                          {isprojectData.isTeam.backEnd && (
-                            <TeamPosition position="backEnd">
-                              BE: {isprojectData.isTeam.backEnd}
-                            </TeamPosition>
+                          {isprojectData.link.github && (
+                            <LinkIcon
+                              href={isprojectData.link.github}
+                              tag="github"
+                            >
+                              <AiFillGithub size={30} />
+                            </LinkIcon>
                           )}
-                          {isprojectData.isTeam.designer && (
-                            <TeamPosition position="designer">
-                              DE: {isprojectData.isTeam.designer}
-                            </TeamPosition>
+                          {isprojectData.link.youtube && (
+                            <LinkIcon
+                              href={isprojectData.link.youtube}
+                              tag="youtube"
+                            >
+                              <AiFillYoutube size={30} />
+                            </LinkIcon>
                           )}
-                        </>
-                      ) : (
-                        <IsTeam isTeam={false}>개인 프로젝트</IsTeam>
+                        </LinkArea>
                       )}
-                    </TeamArea>
-                    {isprojectData.link && (
-                      <LinkArea>
-                        {isprojectData.link.website && (
-                          <LinkIcon
-                            href={isprojectData.link.website}
-                            tag="website"
-                          >
-                            <IoMdGlobe size={30} />
-                          </LinkIcon>
-                        )}
-                        {isprojectData.link.github && (
-                          <LinkIcon
-                            href={isprojectData.link.github}
-                            tag="github"
-                          >
-                            <AiFillGithub size={30} />
-                          </LinkIcon>
-                        )}
-                        {isprojectData.link.youtube && (
-                          <LinkIcon
-                            href={isprojectData.link.youtube}
-                            tag="youtube"
-                          >
-                            <AiFillYoutube size={30} />
-                          </LinkIcon>
-                        )}
-                      </LinkArea>
+                    </HeaderCenter>
+                    {isprojectData.experience && (
+                      <>
+                        <SubTitle>핵심경험</SubTitle>
+                        <ExperienceWrapper>
+                          {isprojectData.experience.map((text, index) => (
+                            <ExperienceBox key={index}>{text}</ExperienceBox>
+                          ))}
+                        </ExperienceWrapper>
+                      </>
                     )}
-                  </HeaderCenter>
-                  {isprojectData.experience && (
-                    <>
-                      <SubTitle>핵심경험</SubTitle>
-                      <ExperienceWrapper>
-                        {isprojectData.experience.map((text, index) => (
-                          <ExperienceBox key={index}>{text}</ExperienceBox>
-                        ))}
-                      </ExperienceWrapper>
-                    </>
-                  )}
-                  {isprojectData.skillStack && (
-                    <>
-                      <SubTitle>used as thd main Tech Stack</SubTitle>
-                      <SkillWrapper>
-                        {isprojectData.skillStack.map((skill, index) => (
-                          <SkillBox key={index} textColor={color()}>
-                            {skill}
-                          </SkillBox>
-                        ))}
-                      </SkillWrapper>
-                    </>
-                  )}
-                </Contents>
-              </Scroll>
-            </ModalBox>
-          </Ctn>
-        </Overlay>
+                    {isprojectData.skillStack && (
+                      <>
+                        <SubTitle>used as thd main Tech Stack</SubTitle>
+                        <SkillWrapper>
+                          {isprojectData.skillStack.map((skill, index) => (
+                            <SkillBox key={index} textColor={color()}>
+                              {skill}
+                            </SkillBox>
+                          ))}
+                        </SkillWrapper>
+                      </>
+                    )}
+                  </Contents>
+                </Scroll>
+              </ModalBox>
+            </Ctn>
+          </Overlay>
+        )}
       </AnimatePresence>
     </ProjectPortal>
   );
