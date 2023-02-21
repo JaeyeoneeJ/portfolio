@@ -31,6 +31,21 @@ export interface IProjectData {
   title: string;
   src: string;
   description: string;
+  overview: string;
+  duration: string;
+  isTeam?:
+    | {
+        frontEnd?: number | undefined;
+        backEnd?: number | undefined;
+        designer?: number | undefined;
+      }
+    | undefined;
+  skillStack?: string[] | undefined;
+  link: {
+    website: string | undefined;
+    github: string | undefined;
+    youtube: string | undefined;
+  };
 }
 
 export const projectData = atom<IProjectData>({
@@ -39,5 +54,12 @@ export const projectData = atom<IProjectData>({
     title: "",
     src: "",
     description: "",
+    overview: "",
+    duration: "",
+    link: {
+      website: undefined,
+      github: undefined,
+      youtube: undefined,
+    },
   },
 });
