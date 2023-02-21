@@ -300,7 +300,7 @@ const ProjectModal = () => {
               <Scroll>
                 <GradientBox>
                   <Img
-                    src={`img/projects/${isprojectData.src}.png`}
+                    src={`img/projects/${isprojectData.src}.gif`}
                     alt="modal-img"
                   />
                 </GradientBox>
