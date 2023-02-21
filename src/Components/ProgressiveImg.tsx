@@ -5,11 +5,11 @@ const Img = styled.img`
   max-width: 960px;
   width: 100%;
   display: block;
-  .loading {
+  &.loading {
     filter: blur(5px);
     clip-path: inset(0);
   }
-  .loaded {
+  &.loaded {
     filter: blur(0);
     transition: filter 0.5s linear;
   }
