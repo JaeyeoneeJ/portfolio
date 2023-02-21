@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
+import { FadeLoader, PropagateLoader } from "react-spinners";
 import styled from "styled-components";
+
+const Wrapper = styled.div`
+  position: relative;
+`;
 
 const Img = styled.img<{ maxWidth: string | undefined }>`
   max-width: ${(props) => (props.maxWidth ? props.maxWidth : "auto")};
@@ -13,6 +18,18 @@ const Img = styled.img<{ maxWidth: string | undefined }>`
     filter: blur(0);
     transition: filter 0.5s linear;
   }
+`;
+
+const Loading = styled.div`
+  /* background-color: red; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 interface IProgressiveImg {
@@ -34,18 +51,32 @@ const ProgressiveImg = ({
     const img = new Image();
     img.src = src;
     img.onload = () => {
+      // setImgSrc(src);
       setImgSrc(src);
     };
   }, [src]);
   return (
-    <Img
-      maxWidth={maxWidth}
-      {...{
-        src: imgSrc,
-        ...props,
-      }}
-      className={`image-${customClass}`}
-    />
+    <Wrapper>
+      <Img
+        maxWidth={maxWidth}
+        {...{
+          src: imgSrc,
+          ...props,
+        }}
+        className={`image-${customClass}`}
+      />
+      {imgSrc === placeholderSrc && (
+        <Loading>
+          <FadeLoader
+            color="#4cba20"
+            height={15}
+            width={5}
+            radius={2}
+            margin={2}
+          />
+        </Loading>
+      )}
+    </Wrapper>
   );
 };
 
