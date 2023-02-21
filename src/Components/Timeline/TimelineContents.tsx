@@ -35,7 +35,7 @@ const FlexRow = styled(FlexCol)`
   justify-content: space-between;
 `;
 const Duration = styled.p`
-  width: 145px;
+  width: 150px;
   text-align: center;
   background-color: ${(props) => props.theme.gray.lighter};
   border-radius: 5px;
