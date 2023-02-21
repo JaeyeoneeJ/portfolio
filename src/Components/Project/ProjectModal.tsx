@@ -95,8 +95,8 @@ const GradientBox = styled.div`
 `;
 
 const Img = styled.img`
+  max-width: 960px;
   width: 100%;
-  height: auto;
   display: block;
 `;
 
@@ -301,6 +301,7 @@ const ProjectModal = () => {
                 <GradientBox>
                   <Img
                     src={`img/projects/${isprojectData.src}.gif`}
+                    loading="lazy"
                     alt="modal-img"
                   />
                 </GradientBox>
@@ -355,7 +356,7 @@ const ProjectModal = () => {
                         )}
                         {isprojectData.link.youtube && (
                           <LinkIcon
-                            href={isprojectData.link.github}
+                            href={isprojectData.link.youtube}
                             tag="youtube"
                           >
                             <AiFillYoutube size={30} />
