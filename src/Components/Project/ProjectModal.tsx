@@ -76,6 +76,7 @@ const Scroll = styled.div`
 const GradientBox = styled.div`
   display: inline-block;
   position: relative;
+  overflow: hidden;
 
   &:after {
     content: "";
@@ -94,7 +95,6 @@ const GradientBox = styled.div`
 `;
 
 const Img = styled.img`
-  border-radius: 10px 10px 0 0;
   width: 100%;
   height: auto;
   display: block;
