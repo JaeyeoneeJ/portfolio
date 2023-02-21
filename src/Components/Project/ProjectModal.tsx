@@ -6,6 +6,7 @@ import { projectData, projectState } from "../../atoms";
 import ProjectPortal from "./ProjectPortal";
 import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
 import { IoMdGlobe } from "react-icons/io";
+import ProgressiveImg from "../ProgressiveImg";
 
 // 모달 배경화면
 const Overlay = styled(motion.div)`
@@ -299,11 +300,15 @@ const ProjectModal = () => {
             <ModalBox ref={modalRef}>
               <Scroll>
                 <GradientBox>
-                  <Img
+                  <ProgressiveImg
+                    src={`img/projects/${isprojectData.src}.gif`}
+                    placeholderSrc={`img/projects/${isprojectData.src}.png`}
+                  />
+                  {/* <Img
                     src={`img/projects/${isprojectData.src}.gif`}
                     loading="lazy"
                     alt="modal-img"
-                  />
+                  /> */}
                 </GradientBox>
                 <Contents>
                   <Header>
