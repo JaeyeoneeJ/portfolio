@@ -301,14 +301,10 @@ const ProjectModal = () => {
               <Scroll>
                 <GradientBox>
                   <ProgressiveImg
+                    maxWidth="960px"
                     src={`img/projects/${isprojectData.src}.gif`}
                     placeholderSrc={`img/projects/${isprojectData.src}.png`}
                   />
-                  {/* <Img
-                    src={`img/projects/${isprojectData.src}.gif`}
-                    loading="lazy"
-                    alt="modal-img"
-                  /> */}
                 </GradientBox>
                 <Contents>
                   <Header>

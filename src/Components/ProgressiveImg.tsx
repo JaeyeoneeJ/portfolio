@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const Img = styled.img`
-  max-width: 960px;
+const Img = styled.img<{ maxWidth: string | undefined }>`
+  max-width: ${(props) => (props.maxWidth ? props.maxWidth : "auto")};
   width: 100%;
   display: block;
   &.image-loading {
@@ -18,9 +18,15 @@ const Img = styled.img`
 interface IProgressiveImg {
   placeholderSrc: string;
   src: string;
+  maxWidth?: string;
 }
 
-const ProgressiveImg = ({ placeholderSrc, src, ...props }: IProgressiveImg) => {
+const ProgressiveImg = ({
+  placeholderSrc,
+  src,
+  maxWidth,
+  ...props
+}: IProgressiveImg) => {
   const [imgSrc, setImgSrc] = useState(placeholderSrc || src);
   const customClass =
     placeholderSrc && imgSrc === placeholderSrc ? "loading" : "loaded";
@@ -33,6 +39,7 @@ const ProgressiveImg = ({ placeholderSrc, src, ...props }: IProgressiveImg) => {
   }, [src]);
   return (
     <Img
+      maxWidth={maxWidth}
       {...{
         src: imgSrc,
         ...props,
