@@ -79,7 +79,7 @@ const TypingText = ({
       }
       return () => clearInterval(interval);
     }
-  });
+  }, [count, isAdding]);
 
   return (
     <Text fontSize={fontSize} color={color}>
