@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
 import styled from "styled-components";
 import Header from "../Components/Header";
 
@@ -11,8 +11,9 @@ const Background = styled.div`
 const Wrapper = styled.div`
   background-color: white;
   background-image: url("https://images.unsplash.com/photo-1595113316349-9fa4eb24f884?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80");
-  background-position: center 20%;
-  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 30%;
+  background-size: 103%;
   border-radius: 10px;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
   max-width: 1600px;
@@ -21,10 +22,10 @@ const Wrapper = styled.div`
   height: 100%;
   width: 100%;
   overflow: hidden;
-  transition: all 5s;
-  &:hover {
+  transition: all 2s;
+  /* &:hover {
     background-position: center 50%;
-  }
+  } */
 `;
 const Container = styled.div`
   z-index: 3;
@@ -34,9 +35,27 @@ const Container = styled.div`
 `;
 
 const Layout = ({ children }: { children: ReactNode }) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const onMouseMoveHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (wrapperRef.current) {
+      wrapperRef.current.style.transition = "all 0s";
+      wrapperRef.current.style.backgroundPosition =
+        -event.pageX / 40 + "px " + -event.pageY / 40 + "px";
+    }
+  };
+  const onMouseLeaveHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (wrapperRef.current) {
+      wrapperRef.current.style.backgroundPosition = "center 30%";
+      wrapperRef.current.style.transition = "all 5s";
+    }
+  };
   return (
     <Background>
-      <Wrapper>
+      <Wrapper
+        ref={wrapperRef}
+        onMouseMove={onMouseMoveHandler}
+        onMouseLeave={onMouseLeaveHandler}
+      >
         <Header />
         <Container>{children}</Container>
       </Wrapper>
