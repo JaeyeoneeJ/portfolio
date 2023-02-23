@@ -30,14 +30,21 @@ const Text = styled.p`
 const ImgWrapper = styled.div`
   display: grid;
   width: 100%;
-  gap: 5px;
+  gap: 1%;
   grid-template-columns: repeat(4, 1fr);
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 `;
 
 const Img = styled.img`
   width: 100%;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+  filter: grayscale(100%);
+  :hover {
+    scale: 1.1;
+    z-index: 1;
+    filter: grayscale(0);
+  }
 `;
 const AboutMe = () => {
   return (
@@ -79,9 +86,13 @@ const AboutMe = () => {
         <Img src="img/aboutMe/branding-3.png" alt="branding" />
         <Img src="img/aboutMe/branding-4.png" alt="branding" />
       </ImgWrapper>
-      <TypingTextToTitle text="재미있는 거" fontSize="30px" color="#265d10" />
       <TextArea>
-        <Text>Front-End Developer 정재연 입니다. :)</Text>
+        <Text>세상을 바꾸는 개발자가 되고 싶습니다.</Text>
+        <Text>
+          물론 많은 변화가 눈 앞에 있고 새로운 지식을 매번 찾아 습득해야 하지만,
+          프로그래밍을 하다 보면 어느덧 새벽이 넘은 시간의 저를 발견하곤 합니다.
+        </Text>
+        <Text>무언가에 몰두할 수 있는 경험은 언제나 즐겁습니다. :)</Text>
       </TextArea>
     </Wrapper>
   );
