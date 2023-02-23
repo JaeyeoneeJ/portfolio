@@ -178,6 +178,7 @@ const SkillBox = styled(Duration)<{ textColor: string }>`
 `;
 
 const Text = styled.p<{ fontSize?: string }>`
+  width: 100%;
   font-weight: ${(props) => (props.fontSize ? 400 : 300)};
   font-size: ${(props) => (props.fontSize ? props.fontSize : "18px")};
   line-height: 1.3;
