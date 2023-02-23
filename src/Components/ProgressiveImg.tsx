@@ -9,6 +9,8 @@ const Wrapper = styled.div`
 const Img = styled.img<{ maxWidth: string | undefined }>`
   max-width: ${(props) => (props.maxWidth ? props.maxWidth : "auto")};
   width: 100%;
+  object-fit: cover;
+
   display: block;
   &.image-loading {
     filter: blur(5px);
@@ -21,7 +23,7 @@ const Img = styled.img<{ maxWidth: string | undefined }>`
 `;
 
 const Loading = styled.div`
-  /* background-color: red; */
+  background-color: rgba(255, 255, 255, 0.2);
   position: absolute;
   top: 0;
   left: 0;
@@ -51,7 +53,6 @@ const ProgressiveImg = ({
     const img = new Image();
     img.src = src;
     img.onload = () => {
-      // setImgSrc(src);
       setImgSrc(src);
     };
   }, [src]);
