@@ -1,6 +1,7 @@
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { IProjectData, projectData, projectState } from "../atoms";
+import ProgressiveImg from "../Components/ProgressiveImg";
 
 const Ctn = styled.div`
   position: relative;
@@ -36,7 +37,7 @@ const Card = styled.div`
   height: 100%;
   cursor: pointer;
   &:hover {
-    img {
+    .filter {
       scale: 1.05;
       -webkit-filter: grayscale(0);
       filter: grayscale(0);
@@ -46,6 +47,20 @@ const Card = styled.div`
 const ImgBox = styled.div`
   overflow: hidden;
   border-bottom: 1px solid ${(props) => props.theme.gray.lighter};
+  img {
+    aspect-ratio: 16/9;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+`;
+
+const Filter = styled.div`
+  transition: all 0.3s;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 `;
 const Img = styled.img`
   transition: all 0.3s;
@@ -249,7 +264,13 @@ const Project = () => {
         {projects.map((project, index) => (
           <Card key={index} onClick={() => onProjectView(project)}>
             <ImgBox>
-              <Img src={`img/projects/${project.src}.png`} alt="project-img" />
+              <Filter className="filter">
+                <ProgressiveImg
+                  maxWidth="100%"
+                  src={`img/projects/${project.src}.png`}
+                  placeholderSrc={`img/projects/tiny_${project.src}.png`}
+                />
+              </Filter>
             </ImgBox>
             <Textarea>
               <Text fontSize="20px">{project.title}</Text>

@@ -75,7 +75,6 @@ const Scroll = styled.div`
 `;
 
 const GradientBox = styled.div`
-  display: inline-block;
   position: relative;
   overflow: hidden;
 
@@ -308,7 +307,7 @@ const ProjectModal = () => {
                     <ProgressiveImg
                       maxWidth="960px"
                       src={`img/projects/${isprojectData.src}.gif`}
-                      placeholderSrc={`img/projects/${isprojectData.src}.png`}
+                      placeholderSrc={`img/projects/gifToPng_${isprojectData.src}.png`}
                     />
                   </GradientBox>
                   <Contents>
