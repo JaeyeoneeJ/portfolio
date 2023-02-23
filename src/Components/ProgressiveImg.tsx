@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FadeLoader, PropagateLoader } from "react-spinners";
+import { FadeLoader } from "react-spinners";
 import styled from "styled-components";
 
 const Wrapper = styled.div`

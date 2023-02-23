@@ -2,9 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import TypingText from "../Components/TypingText";
 
-const Wrapper = styled.div`
-  /* background-color: red; */
-`;
+const Wrapper = styled.div``;
 const Container = styled.div`
   height: calc(100vh - 260px);
   font-size: 30px;
@@ -14,7 +12,6 @@ const Container = styled.div`
   gap: 20px;
   align-items: center;
   justify-content: center;
-  /* background-color: red; */
 `;
 
 const Home = () => {

@@ -11,7 +11,6 @@ import ProgressiveImg from "../ProgressiveImg";
 // 모달 배경화면
 const Overlay = styled(motion.div)`
   position: fixed;
-  /* z-index: 6; */
   width: 100%;
   height: 100%;
   position: fixed;
@@ -24,7 +23,7 @@ const Overlay = styled(motion.div)`
 
 // 모달 닫기 버튼
 const CloseBtn = styled.div`
-  /* z-index: 1; */
+  z-index: 1;
   position: absolute;
   display: flex;
   top: 12px;
@@ -77,7 +76,6 @@ const Scroll = styled.div`
 const GradientBox = styled.div`
   position: relative;
   overflow: hidden;
-
   &:after {
     content: "";
     position: absolute;
@@ -92,12 +90,6 @@ const GradientBox = styled.div`
       rgba(255, 255, 255, 1) 100%
     ); /* W3C */
   }
-`;
-
-const Img = styled.img`
-  max-width: 960px;
-  width: 100%;
-  display: block;
 `;
 
 const Contents = styled.div`

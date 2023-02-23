@@ -32,7 +32,6 @@ const Container = styled.div`
   z-index: 3;
   margin-top: 20px;
   height: 100%;
-  /* border: 1px solid red; */
 `;
 
 const Layout = ({ children }: { children: ReactNode }) => {
@@ -47,7 +46,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
   };
   const onMouseOverHandler = () => {
     if (wrapperRef.current && !windowWidth) {
-      console.log("hover");
       wrapperRef.current.style.backgroundPosition = "center 50%";
     }
   };

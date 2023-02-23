@@ -11,6 +11,7 @@ const Ctn = styled.div`
     height: calc(100% - 53px);
   }
 `;
+
 const Wrapper = styled.div`
   overflow-y: auto;
   padding: 20px;
@@ -27,6 +28,7 @@ const Wrapper = styled.div`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
+
 const Card = styled.div`
   /* background-color: green; */
   border-radius: 10px;
@@ -44,6 +46,7 @@ const Card = styled.div`
     }
   }
 `;
+
 const ImgBox = styled.div`
   overflow: hidden;
   border-bottom: 1px solid ${(props) => props.theme.gray.lighter};
@@ -62,21 +65,14 @@ const Filter = styled.div`
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
 `;
-const Img = styled.img`
-  transition: all 0.3s;
-  aspect-ratio: 16/9;
-  width: 100%;
-  object-fit: cover;
-  display: block;
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-`;
+
 const Textarea = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
+
 const Text = styled.p<{ fontSize?: string }>`
   text-align: ${(props) => (props.fontSize ? "center" : "inherits")};
   color: ${(props) => (props.fontSize ? props.theme.pointColor : "inherits")};
