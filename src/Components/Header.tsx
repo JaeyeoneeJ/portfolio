@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FaGithub } from "react-icons/fa";
+import { AiFillMail } from "react-icons/ai";
 import { Link, useMatch } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -22,9 +23,9 @@ const Wrapper = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.white.lighter};
 `;
 
-const FlexBox = styled.div`
+const FlexBox = styled.div<{ gap: string }>`
   display: flex;
-  gap: 80px;
+  gap: ${(props) => props.gap};
 `;
 
 const MenuArea = styled.div`
@@ -73,14 +74,18 @@ const TitleArea = styled.div`
     }
   }
 `;
-const LinkArea = styled.a`
+const LinkArea = styled.a<{ hoverColor: string }>`
   cursor: pointer;
   svg {
     color: white;
     transition: all 0.3s;
   }
+  &:first-child:hover {
+    transition: all 0.3s;
+    transform: rotateZ(-15deg);
+  }
   &:hover svg {
-    color: ${(props) => props.theme.gray.darker};
+    color: ${(props) => props.hoverColor};
     scale: 1.1;
     transform: translateY(-5px);
   }
@@ -91,10 +96,21 @@ const Header = () => {
   const projectMatch = useMatch("/project");
   const timelineMatch = useMatch("/timeline");
   const aboutMeMatch = useMatch("/about_me");
+  const emailAddress = "5ikve@naver.com";
+  const copyClipboard = (text: string) => {
+    try {
+      // 현재 작동하지 않음
+      navigator.clipboard && console.log("가능!");
+      navigator.clipboard.writeText(text);
+      alert(`메일 주소 ${text}이 복사되었습니다.`);
+    } catch (e) {
+      alert("메일 주소 복사에 실패하였습니다.");
+    }
+  };
   return (
     <Position>
       <Wrapper>
-        <FlexBox>
+        <FlexBox gap="80px">
           <Link to="/">
             <TitleArea>
               <span>jaeyeonee's</span>
@@ -128,9 +144,17 @@ const Header = () => {
             </MenuItem>
           </MenuArea>
         </FlexBox>
-        <LinkArea href="https://github.com/jaeyeoneej">
-          <FaGithub size={30} />
-        </LinkArea>
+        <FlexBox gap="10px">
+          <LinkArea
+            hoverColor="#0bb9f8"
+            onClick={() => copyClipboard(emailAddress)}
+          >
+            <AiFillMail size={30} />
+          </LinkArea>
+          <LinkArea hoverColor="black" href="https://github.com/jaeyeoneej">
+            <FaGithub size={30} />
+          </LinkArea>
+        </FlexBox>
       </Wrapper>
     </Position>
   );
