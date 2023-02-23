@@ -4,6 +4,7 @@ import { FaGithub } from "react-icons/fa";
 import { AiFillMail } from "react-icons/ai";
 import { Link, useMatch } from "react-router-dom";
 import { motion } from "framer-motion";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const Position = styled.div`
   top: 80px;
@@ -97,16 +98,6 @@ const Header = () => {
   const timelineMatch = useMatch("/timeline");
   const aboutMeMatch = useMatch("/about_me");
   const emailAddress = "5ikve@naver.com";
-  const copyClipboard = (text: string) => {
-    try {
-      // 현재 작동하지 않음
-      navigator.clipboard && console.log("가능!");
-      navigator.clipboard.writeText(text);
-      alert(`메일 주소 ${text}이 복사되었습니다.`);
-    } catch (e) {
-      alert("메일 주소 복사에 실패하였습니다.");
-    }
-  };
   return (
     <Position>
       <Wrapper>
@@ -145,12 +136,16 @@ const Header = () => {
           </MenuArea>
         </FlexBox>
         <FlexBox gap="10px">
-          <LinkArea
-            hoverColor="#0bb9f8"
-            onClick={() => copyClipboard(emailAddress)}
+          <CopyToClipboard
+            text={emailAddress}
+            onCopy={() => {
+              alert(`메일 주소 ${emailAddress}이 복사되었습니다.`);
+            }}
           >
-            <AiFillMail size={30} />
-          </LinkArea>
+            <LinkArea hoverColor="#0bb9f8">
+              <AiFillMail size={30} />
+            </LinkArea>
+          </CopyToClipboard>
           <LinkArea hoverColor="black" href="https://github.com/jaeyeoneej">
             <FaGithub size={30} />
           </LinkArea>
