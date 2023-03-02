@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { imgState, projectState } from "./atoms";
@@ -12,6 +13,10 @@ import Timeline from "./Routes/Timeline";
 function App() {
   const isClickedImg = useRecoilValue(imgState);
   const isClickedProject = useRecoilValue(projectState);
+
+  useEffect(() => {
+    location.replace("https://portfolio-nextjs-jaeyeoneej.vercel.app/");
+  }, []);
   return (
     <BrowserRouter>
       {isClickedImg && <ImgModal />}
