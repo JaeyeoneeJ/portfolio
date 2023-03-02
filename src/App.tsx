@@ -15,7 +15,7 @@ function App() {
   const isClickedProject = useRecoilValue(projectState);
 
   useEffect(() => {
-    location.replace("https://portfolio-nextjs-jaeyeoneej.vercel.app/");
+    window.location.replace("https://portfolio-nextjs-jaeyeoneej.vercel.app/");
   }, []);
   return (
     <BrowserRouter>
